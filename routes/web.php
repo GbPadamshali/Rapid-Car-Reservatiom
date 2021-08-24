@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'admin\UserController@login');
+Route::get('/login', 'admin\UserController@login');
+Route::post('/login', 'admin\UserController@log_in');
+
+Route::get('/register', 'admin\UserController@create');
+Route::post('register', 'admin\UserController@store');
+
+Route::get('/forgot', 'admin\UserController@forgot');
