@@ -18,7 +18,9 @@ Route::get('/', 'admin\UserController@login');
 Route::get('/login', 'admin\UserController@login');
 Route::post('/login', 'admin\UserController@log_in');
 
-Route::get('/register', 'admin\UserController@create');
-Route::post('register', 'admin\UserController@store');
-
 Route::get('/forgot', 'admin\UserController@forgot');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'adminauth'], function () {
+    // Admin Dashboard
+    Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
+});

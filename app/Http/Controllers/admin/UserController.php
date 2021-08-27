@@ -23,11 +23,11 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.register');
+        return view('admin.users.register');
     }
     public function store(Request $req)
     {
-        $this->validate($req, [
+        $req->validate($req, [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
@@ -45,30 +45,46 @@ class UserController extends Controller
     }
     public function login()
     {
-        return view('admin.login');
+        return view('admin.users.login');
     }
     public function log_in(Request $req)
     {
         $this->validate($req, [
-            'email' => 'required|string|max:255',
-            'password' => 'required|string',
-        ], [
-            'email.required' => 'Email address is required',
-            'password.required' => 'Password is required',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
+        // if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
+        // {
+        //     $user = auth()->guard('admin')->user();
+
+        //     \Session::put('success','You are Login successfully!!');
+        //     return redirect()->route('dashboard');
+
+        // } else {
+        //     return back()->with('error','your username and password are wrong.');
+        // }
+
         $user = User::where('email', $req->input('email'))->first();
-        if (empty($user)) Log::debug("Invalid login details");
+        if (empty($user))  return redirect()->back()->with('error', 'Invalid login details.');
 
         if (!Hash::check($req->input('password'), $user->password)) {
-            Log::debug("Invalid login details");
+            return redirect()->back()->with('error', 'Invalid login details.');
         } else {
             Session::push('id', $user->id);
-            return redirect()->to('/dashboard')->withSuccess('You have Successfully loggedin');;
+            return redirect()->route('dashboard')->with('success', 'You have Successfully loggedin.');
         }
     }
     public function forgot()
     {
-        return view('admin.forgot');
+        return view('admin.users.forgot');
+    }
+
+    public function logout()
+    {
+        // auth()->guard('admin')->logout();
+        // \Session::flush();
+        // \Sessioin::put('success', 'You are logout successfully');
+        // return redirect(route('login'));
     }
 }

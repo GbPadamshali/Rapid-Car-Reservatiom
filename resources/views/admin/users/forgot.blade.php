@@ -12,7 +12,8 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
                                     <h4 class="text-center mb-4">Forgot Password</h4>
-                                    <form action="index.html">
+                                    <form action="/forgot">
+                                        @csrf
                                         <div class="form-group">
                                             <label><strong>Email</strong></label>
                                             <input type="text" class="form-control" value="">
@@ -29,4 +30,3 @@
             </div>
         </div>
     </div>
-    @endsection
