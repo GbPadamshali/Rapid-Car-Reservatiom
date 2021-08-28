@@ -27,7 +27,7 @@
     <script src="./theme/js/quixnav-init.js"></script>
     <script src="./theme/js/custom.min.js"></script>
 
-
+    <script src="./theme/vendor/chartist/js/chartist.min.js"></script>
     <script src="./theme/vendor/moment/moment.min.js"></script>
     <script src="./theme/vendor/pg-calendar/js/pignose.calendar.min.js"></script>
 

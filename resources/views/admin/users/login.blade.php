@@ -11,20 +11,22 @@
                         <div class="col-xl-12">
                             <div class="auth-form">
                                 <h4 class="text-center mb-4">Login</h4>
-                                @if (session('success'))
-                                <div class="alert alert-success">
-                                    <button class="close" data-close="alert"></button>
-                                    <strong>{{ session('success') }}</strong>
-                                </div>
-                                @endif
-                                @if (session('error'))
-                                <div class="alert alert-danger">
-                                    <button class="close" data-close="alert"></button>
-                                    <strong>{{ session('error') }}</strong>
-                                </div>
-                                @endif
-                                <form role="form" action="{{url('/login')}}" id="login_form" name="login_form" method="post">
+                                <form role="form" action="{{ route('log_in') }}" id="login_form" name="login_form" method="post">
                                     @csrf
+
+                                    @if (session('success'))
+                                    <div class="alert alert-success">
+                                        <button class="close" data-close="alert"></button>
+                                        <strong>{{ session('success') }}</strong>
+                                    </div>
+                                    @endif
+                                    @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        <button class="close" data-close="alert"></button>
+                                        <strong>{{ session('error') }}</strong>
+                                    </div>
+                                    @endif
+
                                     <div class="form-group">
                                         <label><strong>Email</strong></label>
                                         <input type="text" class="form-control" value="" id="email" name="email">
@@ -43,7 +45,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <a href="{{url('/forgot')}}">Forgot Password?</a>
+                                            <a href="{{route('forgot')}}">Forgot Password?</a>
                                         </div>
                                     </div>
                                     <div class="text-center">

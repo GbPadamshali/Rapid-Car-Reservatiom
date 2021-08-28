@@ -43,38 +43,29 @@ class UserController extends Controller
         Log::debug($user);
         return redirect()->to('/dashboard');
     }
+
     public function login()
     {
+        Log::debug('login');
         return view('admin.users.login');
     }
+
     public function log_in(Request $req)
     {
+        Log::debug('do login');
         $this->validate($req, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        // if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
-        // {
-        //     $user = auth()->guard('admin')->user();
-
-        //     \Session::put('success','You are Login successfully!!');
-        //     return redirect()->route('dashboard');
-
-        // } else {
-        //     return back()->with('error','your username and password are wrong.');
-        // }
-
-        $user = User::where('email', $req->input('email'))->first();
-        if (empty($user))  return redirect()->back()->with('error', 'Invalid login details.');
-
-        if (!Hash::check($req->input('password'), $user->password)) {
-            return redirect()->back()->with('error', 'Invalid login details.');
-        } else {
-            Session::push('id', $user->id);
+        $credentials = $req->only('email', 'password');
+        if (Auth::attempt($credentials)) {
             return redirect()->route('dashboard')->with('success', 'You have Successfully loggedin.');
+        } else {
+            return redirect()->back()->with('error', 'Login details are not valid');
         }
     }
+
     public function forgot()
     {
         return view('admin.users.forgot');
@@ -82,9 +73,8 @@ class UserController extends Controller
 
     public function logout()
     {
-        // auth()->guard('admin')->logout();
-        // \Session::flush();
-        // \Sessioin::put('success', 'You are logout successfully');
-        // return redirect(route('login'));
+        // Session::flush();
+        Auth::logout();
+        return Redirect('login');
     }
 }
