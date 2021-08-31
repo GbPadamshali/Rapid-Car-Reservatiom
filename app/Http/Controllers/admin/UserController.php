@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,13 +13,10 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
+        $this->middleware('guest');
     }
 
     public function create()
@@ -52,11 +50,12 @@ class UserController extends Controller
 
     public function log_in(Request $req)
     {
-        Log::debug('do login');
+
         $this->validate($req, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
+        Log::debug('dologin');
 
         $credentials = $req->only('email', 'password');
         if (Auth::attempt($credentials)) {

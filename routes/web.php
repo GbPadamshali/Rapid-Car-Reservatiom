@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'admin\UserController@login');
 Route::get('/login', 'admin\UserController@login')->name('login');
-Route::post('/log_in', 'admin\UserController@log_in')->name('log_in');
-// Route::post('/log_in', ['uses' => 'admin\UserController@log_in'])->name('log_in');
+Route::post('/login', 'admin\UserController@log_in')->name('logedin');
 
+// Route::post('/log_in', function () {
+//     echo 1;
+//     return;
+// });
 Route::get('/forgot', 'admin\UserController@forgot')->name('forgot');
 Route::get('dashboard', 'admin\DashboardController@index')->name('dashboard');
 
