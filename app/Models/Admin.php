@@ -7,15 +7,15 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends Model implements AuthenticatableContract
+class Admin extends Model
 {
-    use Authenticatable;
     use Notifiable;
 
     protected $fillable = [
         'name',
         'email',
         'phone',
+        'username',
         'password',
     ];
 

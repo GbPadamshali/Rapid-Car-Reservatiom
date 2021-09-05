@@ -611,6 +611,6 @@
 
 @section('js')
 
-<script src="./theme/vendor/chartist/js/chartist.min.js"></script>
+<!-- <script src="./theme/vendor/chartist/js/chartist.min.js"></script> -->
 
 @endsection
