@@ -1,3 +1,4 @@
+@extends('admin.theme.master')
 @section('content')
 
 <div class="content-body">

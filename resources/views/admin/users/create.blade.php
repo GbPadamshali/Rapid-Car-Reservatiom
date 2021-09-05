@@ -1,3 +1,4 @@
+@extends('admin.theme.master')
 @section('content')
 
 <div class="content-body">
@@ -54,7 +55,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </form>
                         </div>
                     </div>
