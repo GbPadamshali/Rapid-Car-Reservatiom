@@ -14,28 +14,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'admin\AdminController@login');
-Route::get('/login', 'admin\AdminController@login')->name('login');
-Route::post('/login', 'admin\AdminController@log_in')->name('do_login');
+Route::group(['prefix' => 'admin'], function () {
 
-Route::get('/forgot', 'admin\AdminController@forgot')->name('forgot');
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('/dashboard', 'admin\DashboardController@index')->name('admin.dashboard');
-});
+    Route::get('/', 'admin\AdminController@login');
+    Route::get('/login', 'admin\AdminController@login')->name('login');
+    Route::post('/login', 'admin\AdminController@log_in')->name('do_login');
 
-// Route::group(['prefix' => 'admin', 'middleware' => 'adminauth'], function () {
-//     Route::get('dashboard', 'UserController@dashboard')->name('dashboard');
-// });
-Route::group(['prefix' => 'user'], function () {
-    Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');
-});
+    Route::get('/forgot', 'admin\AdminController@forgot')->name('forgot');
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+        Route::get('/dashboard', 'admin\DashboardController@index')->name('admin.dashboard');
+    });
 
-$router->group(['prefix' => 'users'], function () use ($router) {
-    Route::get('/index', 'admin\UserController@index')->name('users.index');
-    Route::get('/create', 'admin\UserController@create')->name('users.create');
-    Route::get('/show/{id}', 'admin\UserController@show')->name('users.show', '{id}');
-    Route::post('/store', 'admin\UserController@store')->name('users.store');
-    Route::get('/edit/{id}', 'admin\UserController@edit')->name('users.edit', '{id}');
-    Route::post('/update/{id}', 'admin\UserController@update')->name('users.update');
-    Route::get('/delete/{id}', 'admin\UserController@destroy')->name('users.destroy', '{id}');
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');
+    });
+
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', 'admin\UserController@index')->name('admin.users.index');
+        Route::get('/create', 'admin\UserController@create')->name('admin.users.create');
+        Route::get('/show/{id}', 'admin\UserController@show')->name('admin.users.show', '{id}');
+        Route::post('/store', 'admin\UserController@store')->name('admin.users.store');
+        Route::get('/edit/{id}', 'admin\UserController@edit')->name('admin.users.edit', '{id}');
+        Route::post('/update/{id}', 'admin\UserController@update')->name('admin.users.update');
+        Route::get('/delete/{id}', 'admin\UserController@destroy')->name('admin.users.destroy', '{id}');
+    });
 });

@@ -60,10 +60,13 @@
 </div>
 @endsection
 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
 @section('page_js')
-
 <script>
-    $(document).ready(function() {
+    jQuery(function($) {
+        alert('12');
+        console.log('12');
         $('#login_form').validate({
             rules: {
                 email: {

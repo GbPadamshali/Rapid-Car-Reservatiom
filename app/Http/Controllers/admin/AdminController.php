@@ -14,21 +14,13 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-
-    // public function __construct()
-    // {
-    //     $this->middleware('guest');
-    // }
-
     public function login()
     {
-        Log::debug('login');
         return view('admin.auth.login');
     }
 
     public function log_in(Request $req)
     {
-        // dd($req->request);
         $this->validate($req, [
             'email' => 'required',
             'password' => 'required',
@@ -36,10 +28,8 @@ class AdminController extends Controller
         $credentials = $req->only('email', 'password');
         $credentials['role_id'] = '1';
         if (Auth::attempt($credentials)) {
-            // Log::debug('dologin');
             return redirect()->route('admin.dashboard')->with('success', 'You have Successfully loggedin.');
         } else {
-            // Log::debug('login');
             return redirect()->back()->with('error', 'Login details are not valid');
         }
     }
