@@ -1,7 +1,6 @@
+@extends('admin.theme.master')
 @section('css')
-
 @endsection
-
 @section('content')
 <div class="content-body">
     <div class="container-fluid">
