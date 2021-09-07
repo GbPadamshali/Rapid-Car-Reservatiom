@@ -69,11 +69,12 @@
 @endsection
 
 @section('page_js')
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#name').focus();
+        alert(123);
         $('#store_user').validate({
             rules: {
                 name: 'required',

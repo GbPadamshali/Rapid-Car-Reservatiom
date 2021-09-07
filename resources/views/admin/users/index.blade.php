@@ -7,7 +7,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Basic Datatable</h4>
+                        <h4 class="card-title">Users</h4>
+                        <div class="card-toolbar">
+                            <a href="{{route('admin.users.create')}}" class="btn btn-primary mr-2">
+                                <i nz-icon nzType=" plus"></i>
+                                Add
+                            </a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
