@@ -28,28 +28,28 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label>Name</label>
-                                        <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}" placeholder="1234 Main St">
+                                        <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}" placeholder="Enter Name">
                                         <span id="name_err" style="color: red; font-weight:700;">
                                             <small class="text-danger"><strong>{{ $errors->first('name') }}</strong></small>
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Phone</label>
-                                        <input type="text" class="form-control" name="phone" id="phone" value="{{ $user->phone }}" placeholder="12243453">
+                                        <input type="text" class="form-control" name="phone" id="phone" value="{{ $user->phone }}" placeholder="Enter Phone Number">
                                         <span id="phone_err" style="color: red; font-weight:700;">
                                             <small class="text-danger"><strong>{{ $errors->first('phone') }}</strong></small>
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}" placeholder="Email">
+                                        <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}" placeholder="Enter Email">
                                         <span id="email_err" style="color: red; font-weight:700;">
                                             <small class="text-danger"><strong>{{ $errors->first('email') }}</strong></small>
                                         </span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Password</label>
-                                        <input type="password" class="form-control" name="password" id="password" value="{{ $user->password }}" placeholder="Password">
+                                        <input type="password" class="form-control" name="password" id="password" value="{{ $user->password }}" placeholder="Enter Password">
                                         <span id="password_err" style="color: red; font-weight:700;">
                                             <small class="text-danger"><strong>{{ $errors->first('password') }}</strong></small>
                                         </span>

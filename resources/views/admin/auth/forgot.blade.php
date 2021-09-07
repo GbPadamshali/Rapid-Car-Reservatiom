@@ -10,7 +10,7 @@
                         <div class="col-xl-12">
                             <div class="auth-form">
                                 <h4 class="text-center mb-4">Forgot Password</h4>
-                                <form action="/forgot">
+                                <form action="#">
                                     @csrf
                                     <div class="form-group">
                                         <label><strong>Email</strong></label>
