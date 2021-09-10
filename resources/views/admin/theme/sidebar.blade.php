@@ -42,6 +42,7 @@
              <ul class="metismenu" id="menu">
                  <li><a><i class="icon icon-single-04"></i><span class="nav-text">Dashboard</span></a></li>
                  <li><a><i class="icon icon-single-04"></i><span class="nav-text">Users</span></a></li>
+                 <li class="{{ activeMenu('cars') }}"><a href="{{ route('admin.cars.index') }}"><i class="icon icon-single-04"></i><span class="nav-text active">Cars</span></a></li>
              </ul>
          </div>
      </div>

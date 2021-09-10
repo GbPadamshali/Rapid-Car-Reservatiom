@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'user'], function () {
-        Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');
+       // Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');
     });
 
     Route::group(['prefix' => 'users'], function () {
@@ -37,5 +37,18 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/edit/{id}', 'admin\UserController@edit')->name('admin.users.edit', '{id}');
         Route::post('/update/{id}', 'admin\UserController@update')->name('admin.users.update');
         Route::get('/delete/{id}', 'admin\UserController@destroy')->name('admin.users.destroy', '{id}');
+    });
+
+    Route::group(['prefix' => 'cars'], function () {
+        Route::get('/', 'admin\CarController@index')->name('admin.cars.index');
+        Route::get('/create', 'admin\CarController@create')->name('admin.cars.create');
+        Route::get('/show/{id}', 'admin\CarController@show')->name('admin.cars.show', '{id}');
+        Route::post('/store', 'admin\CarController@store')->name('admin.cars.store');
+        Route::get('/edit/{id}', 'admin\CarController@edit')->name('admin.cars.edit', '{id}');
+        Route::post('/update/{id}', 'admin\CarController@update')->name('admin.cars.update');
+        Route::delete('/delete/{id}', 'admin\CarController@destroy')->name('admin.cars.destroy', '{id}');
+        Route::post('changestatus', 'admin\CarController@changestatus')->name('admin.cars.changestatus');
+        Route::delete('deleteimage/{id}', 'admin\CarController@deleteimage')->name('admin.cars.deleteimage');
+
     });
 });
