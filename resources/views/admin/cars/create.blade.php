@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="form-group col-md-6" style="margin-top: 23px;">
                                         <label for="upload_imgs" class="button hollow">Select Your Images +</label>
-                                        <input class="show-for-sr" name="upload_imgs[]" type="file" id="upload_imgs" multiple/ required="">
+                                        <input class="show-for-sr"  value="@if(!empty($car)){{ $car->image[0]->id ?? ''}}@endif" name="upload_imgs[]" type="file" id="upload_imgs" multiple >
                                     </div>
                                     <div class="quote-imgs-thumbs quote-imgs-thumbs--hidden form-group col-md-12" id="img_preview" aria-live="polite"></div>
 
@@ -150,12 +150,18 @@
         /******************** validate  created by : vikas katariya (09-09-2021)********************/
 
         $('#store_user').validate({
+            ignore: [],
+
+
             rules: {
                 name: 'required',
                 owner: 'required',
                 make: 'required',
                 model: 'required',
-                year: 'required',
+                year_built: 'required',
+                'year_built[]': {
+                  required: true
+                }
             },
             messages: {
                 name: {

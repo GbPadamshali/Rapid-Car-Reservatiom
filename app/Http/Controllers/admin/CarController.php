@@ -51,14 +51,14 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+
         $input = $request->all();
         if (isset($request->id)) {
-            $rules['name'] = 'required|email|unique:users,email,' . $request->id;
+            $rules['name'] = 'required|unique:users,email,' . $request->id;
             $rules['owner'] = 'required';
             $rules['make'] = 'required';
             $rules['model'] = 'required';
             $rules['year_built'] = 'required';
-            $rules['upload_imgs.*'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
 
         }else{
             $rules = [
@@ -72,6 +72,7 @@ class CarController extends Controller
         }
         $validator = Validator::make($input, $rules);
         if ($validator->fails()) {
+            Log::debug($validator->errors());
             return redirect()->route('admin.cars.index')->with('error',  $validator->errors()->first());
         } else {
             Log::debug($request);
