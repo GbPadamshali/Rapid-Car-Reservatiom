@@ -51,4 +51,17 @@ Route::group(['prefix' => 'admin'], function () {
         Route::delete('deleteimage/{id}', 'admin\CarController@deleteimage')->name('admin.cars.deleteimage');
 
     });
+
+    Route::group(['prefix' => 'vehicles'], function () {
+        Route::get('/', 'admin\VehicleController@index')->name('admin.vehicles.index');
+        Route::get('/create', 'admin\VehicleController@create')->name('admin.vehicles.create');
+        Route::get('/show/{id}', 'admin\VehicleController@show')->name('admin.vehicles.show', '{id}');
+        Route::post('/store', 'admin\VehicleController@store')->name('admin.vehicles.store');
+        Route::get('/edit/{id}', 'admin\VehicleController@edit')->name('admin.vehicles.edit', '{id}');
+        Route::post('/update/{id}', 'admin\VehicleController@update')->name('admin.vehicles.update');
+        Route::delete('/delete/{id}', 'admin\VehicleController@destroy')->name('admin.vehicles.destroy', '{id}');
+        Route::post('changestatus', 'admin\VehicleController@changestatus')->name('admin.vehicles.changestatus');
+        Route::delete('deleteimage/{id}', 'admin\VehicleController@deleteimage')->name('admin.vehicles.deleteimage');
+
+    });
 });
