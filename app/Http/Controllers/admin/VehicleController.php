@@ -19,7 +19,6 @@ class VehicleController extends Controller
         $banks = Bank::get();
         $companies = Company::get();
         $cars = Car::get();
-        Log::debug($vehicles);
         return view('admin.vehicle.index',compact('vehicles','banks','companies','cars'));
     }
         /**

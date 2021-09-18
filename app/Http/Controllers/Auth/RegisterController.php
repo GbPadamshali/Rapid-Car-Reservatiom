@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "user/dashboard";
 
     /**
      * Create a new controller instance.
@@ -49,11 +49,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+         $validator=  Validator::make($data, [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' => ['required'],
+            'dob' => ['required'],
+            'gender' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        //print_r( $validator->errors()->first());
+        return $validator;
     }
 
     /**
@@ -65,9 +72,35 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone' => $data['phone'],
+            'dob' => $data['dob'],
+            'gender' => $data['gender'],
+            'status' => "0",
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'token' => sha1(time()),
+            'verified' => "0"
         ]);
+    }
+
+    public function verifyUser($token)
+    {
+      $verifyUser = User::where('token', $token)->first();
+      if(isset($verifyUser) ){
+        $user = $verifyUser;
+        if(!$user->verified) {
+          $verifyUser->token = '';
+          $verifyUser->verified = 1;
+          $verifyUser->save();
+          $status = "Your e-mail is verified. You can now login.";
+        } else {
+          $status = "Your e-mail is already verified. You can now login.";
+        }
+      } else {
+        return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
+      }
+      return redirect('/login')->with('status', $status);
     }
 }

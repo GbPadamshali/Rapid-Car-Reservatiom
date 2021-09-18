@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes();
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
+});
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'admin\AdminController@login');
@@ -25,9 +29,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/dashboard', 'admin\DashboardController@index')->name('admin.dashboard');
     });
 
-    Route::group(['prefix' => 'user'], function () {
-       // Route::get('dashboard', 'DashboardController@index')->name('user.dashboard');
-    });
+/*    Route::group(['prefix' => 'user'], function () {
+        Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
+    });*/
 
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', 'admin\UserController@index')->name('admin.users.index');
@@ -65,3 +69,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     });
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
