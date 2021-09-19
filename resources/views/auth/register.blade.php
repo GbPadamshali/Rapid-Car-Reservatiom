@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en-US">
    <head>
@@ -12,34 +10,44 @@
       <!-- Title -->
       <title>Rapid Car Leasing Service</title>
       <!-- Favicon -->
-      <link rel="icon" type="image/png" sizes="32x32" href="http://rapidcarlease.com/assets/img/favicon/favicon(new).png">
+      <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon(new).png">
+      <!-- Date Picker -->
+      <link rel='stylesheet' href='https://btn.ninja/css/addons.css'>
       <!--Bootstrap css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/bootstrap.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/bootstrap.css') }}">
       <!--Font Awesome css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/font-awesome.min.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/font-awesome.min.css') }}">
       <!--Magnific css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/magnific-popup.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/magnific-popup.css') }}">
       <!--Owl-Carousel css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/owl.carousel.min.css">
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/owl.carousel.min.css') }}">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/owl.theme.default.min.css') }}">
       <!--Animate css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/animate.min.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/animate.min.css') }}">
       <!--Datepicker css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/jquery.datepicker.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/jquery.datepicker.css') }}') }}">
       <!--Nice Select css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/nice-select.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/nice-select.css') }}">
       <!-- Lightgallery css -->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/lightgallery.min.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/lightgallery.min.css') }}">
       <!--ClockPicker css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/jquery-clockpicker.min.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/jquery-clockpicker.min.css') }}">
       <!--Slicknav css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/slicknav.min.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/slicknav.min.css') }}">
       <!--Site Main Style css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/style.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/style.css') }}">
       <!--Responsive css-->
-      <link rel="stylesheet" href="http://rapidcarlease.com/assets/css/responsive.css">
+      <link rel="stylesheet" href="{{ URL::asset('theme/authentication/css/responsive.css') }}">
+      <style type="text/css">
+         .icon-form-group i {
+             height: 49px!important;
+          }
+          .error{
+            color: #ec3323!important;
+          }
+      </style>
    </head>
-   <body>
+   <body class="signup-body">
        
        
       <!-- Header Top Area Start -->
@@ -53,24 +61,6 @@
                </div>
                <div class="col-md-6">
                   <div class="header-top-right">
-                     <a href="{{ url('login') }}">
-                     <i class="fa fa-key"></i>
-                     login
-                     </a>
-                     <a href="{{ url('register') }}">
-                     <i class="fa fa-user"></i>
-                     register
-                     </a>
-                     <!-- <div class="dropdown">
-                        <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true">
-                        <img src="http://rapidcarlease.com/assets/img/en.png" alt="lang" /> English
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownlang">
-                           <li><img src="http://rapidcarlease.com/assets/img/ca.png" alt="lang" /> Canada</li>
-                           <li><img src="http://rapidcarlease.com/assets/img/fa.png" alt="lang" /> French</li>
-                           <li><img src="http://rapidcarlease.com/assets/img/ja.png" alt="lang" /> Japanese</li>
-                        </ul>
-                     </div> -->
                   </div>
                </div>
             </div>
@@ -80,66 +70,28 @@
        
        
       <!-- Main Header Area Start -->
-      <header class="gauto-main-header-area">
+      <header class="gauto-main-header-area" id="stickyHeader">
          <div class="container">
             <div class="row">
                <div class="col-md-3">
                   <div class="site-logo">
                      <a href="index.html">
-                     <img src="http://rapidcarlease.com/assets/img/logo(new).png" alt="gauto" />
+                     <img src="{{ URL::asset('theme/authentication/img/logo(new).png') }}" alt="gauto" />
                      </a>
                   </div>
                </div>
-               <div class="col-lg-6 col-sm-9">
-                  <div class="header-promo">
-                     <div class="single-header-promo">
-                        <div class="header-promo-icon">
-                           <img src="http://rapidcarlease.com/assets/img/globe.png" alt="globe" />
-                        </div>
-                        <div class="header-promo-info">
-                           <h3>Chicago, USA</h3>
-                           <p>1400 Renaissance Dr, #201,</p><p>Park Ridge, IL, 60068 </p>
-                        </div>
-                     </div>
-                     <div class="single-header-promo">
-                        <div class="header-promo-icon">
-                           <img src="http://rapidcarlease.com/assets/img/clock.png" alt="clock" />
-                        </div>
-                        <div class="header-promo-info">
-                           <h3>Monday to Friday</h3>
-                           <p>9:00am - 6:00pm</p>
-                        </div>
-                     </div>
-                  </div>
+               <div class="col-lg-3 col-sm-9">
                </div>
-               <div class="col-lg-3">
+               <div class="col-lg-6">
                   <div class="header-action">
+                     <a href="{{ url('register') }}"> Register </a>
                      <a href="{{ url('login') }}"> Driver's Login </a>
                   </div>
                </div>
             </div>
          </div>
       </header>       
-       
-      <!-- Breadcromb Area Start -->
-      <section class="gauto-breadcromb-area section_70">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="breadcromb-box">
-                     <h3>Register Page</h3>
-                     <ul>
-                        <li><i class="fa fa-home"></i></li>
-                        <li><a href="index.html">Home</a></li>
-                        <li><i class="fa fa-angle-right"></i></li>
-                        <li>Register</li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!-- Breadcromb Area End -->
+      
        
        
       <!-- Login Area Start -->
@@ -147,54 +99,62 @@
          <div class="container">
             <div class="row">
                <div class="col-md-12">
-                  <div class="login-box">
+                  <div class="login-box signup-login-box">
                      <div class="login-page-heading">
                         <i class="fa fa-key"></i>
                         <h3>sign Up</h3>
                      </div>
-                     <form class="loginform pt-3" method="POST" action="{{ url('register') }}" >
-                        <div class="account-form-group">
-                           <input type="text" placeholder="First name" name="first_name">
-                           <i class="fa fa-user"></i>
+                     <form class="loginform pt-3" method="POST" action="{{ url('register') }}" id="register_form">
+
+                        <div class="form-row">
+                           <div class="form-group icon-form-group col-md-6">
+                              <i class="fa fa-user"></i>
+                              <input type="text" placeholder="First Name" name="first_name" class="form-control" required="">
+                              <span id="err-first_name"></span>
+                           </div>
+   
+                           <div class="form-group icon-form-group col-md-6">
+                              <i class="fa fa-user"></i>
+                              <input type="text" placeholder="Last Name" name="last_name" class="form-control">
+                              <span id="err-last_name"></span>
+                           </div>
                         </div>
-                         <div class="account-form-group">
-                           <input type="text" placeholder="Last name" name="last_name">
-                           <i class="fa fa-user"></i>
-                        </div>
-                        <div class="account-form-group">
-                           <input type="email" placeholder="Email" name="email">
+
+
+                        <div class="form-group icon-form-group">
                            <i class="fa fa-envelope-o"></i>
+                           <input type="email" placeholder="Email" name="email" class="form-control">
+                           <span id="err-email"></span>
                         </div>
-                        <div class="account-form-group">
-                           <input type="text" placeholder="Phone" name="phone">
-                           <i class="fa fa-envelope-o"></i>
+
+                        <div class="form-row">
+                           <div class="form-group icon-form-group col-md-6">
+                              <i class="fa fa-mobile" style="font-size:22px;"></i>
+                              <input type="text" placeholder="Mobile No." name="phone" class="form-control">
+                              <span id="err-phone"></span>
+                           </div>
+                           <div class="form-group icon-form-group col-md-6">
+                              <i class="fa fa-calendar-plus-o"></i>
+                              <input type="text" class="form-control jDatepicker" name="dob" placeholder="Select Date" value="{{  \Carbon\Carbon::now()->format('d-M-Y') }}">
+                              <span id="err-dob"></span>
+                           </div>
                         </div>
-                        <div class="account-form-group">
-                           <input type="password" placeholder="Password" name="password">
-                           <i class="fa fa-lock"></i>
-                        </div>
-                        <div class="account-form-group">
-                           <input type="password" placeholder="Confirm Password" name="password_confirmation" id="confirmed">
-                           <i class="fa fa-lock"></i>
-                        </div>
-                        <div class="account-form-group">
-                           <input type="date" placeholder="Date of birth" name="dob">
-                           <i class="fa fa-user"></i>
-                        </div>
-                        <div class="account-form-group row">
-                           <div class="col-md-12">
-                           <input type="radio" id="html" name="gender" value="male">
-                           <label for="html">Male</label><br>
-                           <input type="radio" id="css" name="gender" value="female">
-                           <label for="css">Female</label><br>
-                           <i class="fa fa-user"></i>
-                        </div>
-                        </div>
-                        <div class="remember-row">
-                           <p class="checkbox remember signup">
-                              <input class="checkbox-spin" type="checkbox" id="Freelance">
-                              <label for="Freelance"><span></span>accept terms & condition</label>
-                           </p>
+                        
+                        <div class="form-row">
+                           <div class="form-group icon-form-group col-md-6">
+                              <i class="fa fa-lock"></i>
+                              <input type="password" id="password" placeholder="Password" name="password" class="form-control">
+                              <span id="err-password"></span>
+                              <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                           </div>
+                           <div class="form-group icon-form-group col-md-6">
+                              <i class="fa fa-lock"></i>
+                              <input type="password" id="cpassword" placeholder="Confirm Password" name="password_confirmation" class="form-control">
+                              <span id="err-cpassword"></span>
+                              <span toggle="#cpassword" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                           </div>
+   
+                           
                         </div>
                         <p>
                            <button type="submit" class="gauto-theme-btn">Register now</button>
@@ -220,7 +180,7 @@
                      <div class="single-footer">
                         <div class="footer-logo">
                            <a href="#">
-                           <img src="http://rapidcarlease.com/assets/img/logo(new).png" alt="footer-logo" />
+                           <img src="{{ URL::asset('theme/authentication/img/logo(new).png') }}" alt="footer-logo" />
                            </a>
                         </div>
                         <p>sed do eiusmod tempor incididunt ut labore et dolore magna as aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
@@ -266,7 +226,7 @@
                               <div class="single-footer-post">
                                  <div class="footer-post-image">
                                     <a href="#">
-                                    <img src="http://rapidcarlease.com/assets/img/post-thumb-3.jpg" alt="footer post" />
+                                    <img src="{{ URL::asset('theme/authentication/img/post-thumb-3.jpg') }}" alt="footer post" />
                                     </a>
                                  </div>
                                  <div class="footer-post-text">
@@ -283,7 +243,7 @@
                               <div class="single-footer-post">
                                  <div class="footer-post-image">
                                     <a href="#">
-                                    <img src="http://rapidcarlease.com/assets/img/post-thumb-2.jpg" alt="footer post" />
+                                    <img src="{{ URL::asset('theme/authentication/img/post-thumb-2.jpg') }}" alt="footer post" />
                                     </a>
                                  </div>
                                  <div class="footer-post-text">
@@ -300,7 +260,7 @@
                               <div class="single-footer-post">
                                  <div class="footer-post-image">
                                     <a href="#">
-                                    <img src="http://rapidcarlease.com/assets/img/post-thumb-1.jpg" alt="footer post" />
+                                    <img src="{{ URL::asset('theme/authentication/img/post-thumb-1.jpg') }}" alt="footer post" />
                                     </a>
                                  </div>
                                  <div class="footer-post-text">
@@ -345,28 +305,96 @@
        
        
       <!--Jquery js-->
-      <script src="http://rapidcarlease.com/assets/js/jquery.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/jquery.min.js') }}"></script>
       <!-- Popper JS -->
-      <script src="http://rapidcarlease.com/assets/js/popper.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/popper.min.js') }}"></script>
       <!--Bootstrap js-->
-      <script src="http://rapidcarlease.com/assets/js/bootstrap.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/bootstrap.min.js') }}"></script>
       <!--Owl-Carousel js-->
-      <script src="http://rapidcarlease.com/assets/js/owl.carousel.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/owl.carousel.min.js') }}"></script>
       <!--Lightgallery js-->
-      <script src="http://rapidcarlease.com/assets/js/lightgallery-all.js"></script>
-      <script src="http://rapidcarlease.com/assets/js/custom_lightgallery.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/lightgallery-all.js') }}"></script>
+      <script src="{{ URL::asset('theme/authentication/js/custom_lightgallery.js') }}"></script>
       <!--Slicknav js-->
-      <script src="http://rapidcarlease.com/assets/js/jquery.slicknav.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/jquery.slicknav.min.js') }}"></script>
       <!--Magnific js-->
-      <script src="http://rapidcarlease.com/assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/jquery.magnific-popup.min.js') }}"></script>
       <!--Nice Select js-->
-      <script src="http://rapidcarlease.com/assets/js/jquery.nice-select.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/jquery.nice-select.min.js') }}"></script>
       <!-- Datepicker JS -->
-      <script src="http://rapidcarlease.com/assets/js/jquery.datepicker.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/jquery.datepicker.min.js') }}"></script>
       <!--ClockPicker JS-->
-      <script src="http://rapidcarlease.com/assets/js/jquery-clockpicker.min.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/jquery-clockpicker.min.js') }}"></script>
       <!--Main js-->
-      <script src="http://rapidcarlease.com/assets/js/main.js"></script>
+      <script src="{{ URL::asset('theme/authentication/js/main.js') }}"></script>
+      <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js'></script>
+
+
+      <script id="rendered-js">
+            $('.jDatepicker').datepicker({
+               //calendarWeeks: true,  
+               todayHighlight: false,
+               format: "d-M-yyyy",
+               autoclose: true 
+            });
+      </script>
+
+      <script type="text/javascript">
+      $(document).ready(function() {
+
+        /******************** validate  created by : vikas katariya (09-09-2021)********************/
+
+        $('#register_form').validate({
+            rules: {
+               first_name: 'required',
+               last_name: 'required',
+               email: 'required',
+               phone: 'required',
+               dob: 'required',
+               password : {
+                     required : true,
+                     minlength : 8
+               },
+               password_confirmation : {
+                     required : true,
+                     minlength : 8,
+                     equalTo : '[name="password"]'
+               }
+            },
+            messages: {
+                first_name: {
+                    required: "Please enter first name",
+                },
+                last_name: {
+                    required: "Please enter last name",
+                },
+                email: {
+                    required: "Please enter email",
+                },
+                phone: {
+                    required: "Please enter mobile number",
+                },
+                dob: {
+                    required: "Please enter date of birth",
+                },
+                password: {
+                    required: "Please enter password",
+                },
+                password_confirmation: {
+                    required: "Please enter confirm password",
+                }
+            },
+            errorPlacement: function (error, element) {
+               var name = element.attr("name");
+               error.appendTo("#err-"+name);
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+        });
+     });
+     </script>
    </body>
 </html>
 

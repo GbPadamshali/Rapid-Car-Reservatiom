@@ -101,7 +101,7 @@ class CarController extends Controller
                                 $imagesPath = public_path() . '/theme/images/cars/';
                                 $image->save($imagesPath.$imageName);
 
-                                $image->resize(150,150);
+                                $image->resize(400,213);
                                 $thumbnailPath = public_path() . '/theme/images/cars/thumbnail/';
                                 $image->save($thumbnailPath.$imageName); 
                                 \DB::enableQueryLog(); 
