@@ -49,13 +49,13 @@
                            </p>
                         </form>
                      </div>
-                     <div class="sidebar-widget">
+                     <div class="sidebar-widget test">
                         <ul class="service-menu nav-tabs get_active" id="tabs" data-tabs="tabs">
-                           <li class="active">
+                           <li class="active" data-tabs="tabs">
                               <a data-toggle="tab" data-id = "1" href="#all">All Brands<span>({{ $all_count }})</span></a>
                            </li>
                            @foreach($vehicle_counts as $vehicle)
-                           <li class="">
+                           <li class="" data-id="{{ $vehicle['company']['id'] }}">
                               <a data-toggle="tab" href="#{{ $vehicle['company']['name']}}" class="get_car_data" data-id = "{{ $vehicle['company']['id'] }}">{{ $vehicle['company']['name']}}<span>({{ $vehicle['count'] }})</span></a>
                            </li>
                            @endforeach
@@ -83,7 +83,6 @@
     <script type="text/javascript">
       /******************** remove-user  created by : vikas katariya********************/
 
-console.log($(".get_active li.active").attr('id'));
       get_load_data(id = null,price_sort= null);
       function get_load_data(id,price_sort){
          $.ajax({
@@ -136,10 +135,7 @@ console.log($(".get_active li.active").attr('id'));
       $('body').on('click', '.pagination a', function(e) {
            e.preventDefault();
            var url = $(this).attr('href');
-           var id =  $('.change_price :selected').val();
-
-           console.log(id)
-           
+           var id =  $(".test ul").find('li.active').data('id');
            var price_sort = $('.change_price :selected').val();
            $.ajax({
              url : url,
