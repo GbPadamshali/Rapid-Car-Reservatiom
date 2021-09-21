@@ -8,7 +8,7 @@
             color: greem;
         }
     </style>
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" style="margin-top: 10px;">
         @if(Auth::user()->verified != 1)
          <div class="container">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -92,8 +92,8 @@
                            <div class="tabcontent-profile-table-detail">
                               <p>Name</p>
                               <p>Date Of Birth</p>
-                              <p>Email  @if(Auth::user()->verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"></i>@endif</p>
-                              <p>Phone  @if(Auth::user()->phone_verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"></i>@endif</p>
+                              <p>Email  </p>
+                              <p>Phone  </p>
                               <p>Approve To Drive</p>
                            </div>
                            <?php
@@ -103,8 +103,8 @@
                            <div class="tabcontent-profile-table-detail">
                               <p>{{ ucfirst(Auth::user()->first_name)}} {{ucfirst(Auth::user()->last_name)}}</p>
                               <p>{{ $new_date_format }}</p>
-                              <p>{{ Auth::user()->email }}</p>
-                              <p>{{  Auth::user()->phone }}</p>
+                              <p>{{ Auth::user()->email }} @if(Auth::user()->verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"></i>@endif</p>
+                              <p>{{  Auth::user()->phone }} @if(Auth::user()->phone_verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"></i> @endif</p>
                               <p>Verify ID</p>
                            </div>
                         </div>

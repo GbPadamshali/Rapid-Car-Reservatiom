@@ -1,6 +1,12 @@
 @extends('admin.theme.master')
 @section('content')
-
+<style type="text/css">
+    .pagination .disabled {
+     padding: 0rem 0rem;
+    color: #cacaca;
+    cursor: not-allowed;
+}
+</style>
 <div class="content-body">
     <div class="container-fluid">
         <div class="row">
@@ -44,10 +50,10 @@
                                 @foreach($cars as $car)
                                 <tr>
                                     <td>{{$car->name}}</td>
-                                    <td>{{$car->owner}}</td>
+                                    <td>{{$car->user->first_name}}</td>
                                     <td>{{$car->make}}</td>
                                     <td>{{$car->model}}</td>
-                                    <td>{{  $car->year_built }}</td>
+                                    <td>{{  $car->year }}</td>
                                     <td>
                                      @if ($car->status == 'active') 
                                         <button type="button" class="btn btn-xs btn-success changestatus" data-status="inactive" data-id="{{$car->id}}">
@@ -70,6 +76,44 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <?php
+                        $link_limit = 7; // maximum number of links (a little bit inaccurate, but will be ok for now)
+                        ?>
+
+                        @if ($cars->lastPage() > 1)
+                            <div id="news_paginate" class="dataTables_paginate paging_simple_numbers" style="float:right;">
+                                <ul class="pagination">
+                                    <li id="news_previous" class="paginate_button page-item previous {{ ($cars->currentPage() == 1) ? ' disabled' : '' }}">
+                                        <a class="page-link" tabindex="0" href="{{ $cars->url(1) }}">Previous</a>
+                                    </li>
+                                    @for ($i = 1; $i <= $cars->lastPage(); $i++)
+                                        <?php
+                                            $half_total_links = floor($link_limit / 2);
+                                            $from = $cars->currentPage() - $half_total_links;
+                                            $to = $cars->currentPage() + $half_total_links;
+                                            if ($cars->currentPage() < $half_total_links) {
+                                                $to += $half_total_links - $cars->currentPage();
+                                            }
+                                            if ($cars->lastPage() - $cars->currentPage() < $half_total_links) {
+                                                $from -= $half_total_links - ($cars->lastPage() - $cars->currentPage()) - 1;
+                                            }
+                                        ?>
+                                        @if ($from < $i && $i < $to)
+                                            <li class="paginate_button page-item {{ ($cars->currentPage() == $i) ? ' active' : '' }}">
+                                                <a class="page-link" href="{{ $cars->url($i) }}">{{ $i }}</a>
+                                            </li>
+                                        @endif
+                                    @endfor
+                                    <li id="news_next" class="paginate_button page-item {{ ($cars->currentPage() == $cars->lastPage()) ? ' disabled' : '' }}">
+                                        @if($cars->currentPage() == $cars->lastPage())
+                                            <a class="page-link" tabindex="0" href="{{ $cars->url($cars->currentPage()) }}" >End</a>
+                                        @else
+                                            <a class="page-link" tabindex="0" href="{{ $cars->url($cars->currentPage()+1) }}" >Next</a>
+                                        @endif
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

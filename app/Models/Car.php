@@ -13,11 +13,13 @@ class Car extends Model
     protected $table = 'cars';
 
     protected $fillable = [
+        'owner_id ',
         'name',
-        'owner',
         'make',
         'model',
-        'year_built',
+        'year',
+        'body',
+        'color',
         'status'
     ];
     protected $casts = [];
@@ -36,5 +38,12 @@ class Car extends Model
     public function image()
     {
         return $this->hasMany('App\Models\CarImage','car_id','id');
+    }
+    /**
+     * Get the image record associated with the car.
+    */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User','owner_id','id');
     }
 }
