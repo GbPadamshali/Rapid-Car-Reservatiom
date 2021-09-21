@@ -28,17 +28,18 @@
                               <div class="single-offers">
                                  <div class="offer-image">
                                     <a href="#">
-                                    <img src="{{ URL::asset('theme/front/img/nissan-offer.png') }}" alt="offer 1" />
+                                    @php $image = url('theme/images/cars/'.$car_data->car->image_test->image); @endphp
+                                    <img src="{{ $image }}" alt="offer 1" />
                                     </a>
                                  </div>
                                  <div class="offer-text">
                                     <a href="#">
-                                       <h3>Nissan 370Z</h3>
+                                       <h3>{{ ucfirst($car_data->car->name) }} {{ucfirst($car_data->car->model)}}</h3>
                                     </a>
                                     <h4>$75.00<span>/ Day</span></h4>
                                     <ul>
-                                       <li><i class="fa fa-car"></i>Model:2017</li>
-                                       <li><i class="fa fa-cogs"></i>Automatic</li>
+                                       <li><i class="fa fa-car"></i>Model:{{$car_data->car->year}}</li>
+                                       <li><i class="fa fa-cogs"></i>{{ $car_data->car->body }}</li>
                                        <li><i class="fa fa-dashboard"></i>20kmpl</li>
                                     </ul>
                                     <div class="offer-action">
@@ -61,6 +62,11 @@
                         @if ($vehicle->lastPage() > 1)
                             <div id="" class="pagination-box-row" style="">
                                 <ul class="pagination">
+                                 <li class="{{($vehicle->currentPage() == 1) ? 'disabled':''}}">
+                                      <a class="" tabindex="-1" href="{{ $vehicle->url($vehicle->currentPage()-1) }}">
+                                         <span aria-hidden="true">«</span>
+                                      </a>
+                                  </li>
                                    
                                     @for ($i = 1; $i <= $vehicle->lastPage(); $i++)
                                         <?php
@@ -80,6 +86,14 @@
                                             </li>
                                         @endif
                                     @endfor
+                                    @if($vehicle->currentPage() != $vehicle->lastPage())
+                                         <li class="{{ ($vehicle->currentPage() == $vehicle->lastPage()) ? ' disabled' : '' }}">
+                                             <a href="{{ $vehicle->url($vehicle->currentPage()+1) }}" class="" aria-label="Next">
+                                                 <span aria-hidden="true">»</span>
+                                                 <span class="sr-only">{{ __('message.Next')}}</span>
+                                             </a>
+                                         </li>
+                                     @endif
                                 </ul>
                             </div>
                         @endif

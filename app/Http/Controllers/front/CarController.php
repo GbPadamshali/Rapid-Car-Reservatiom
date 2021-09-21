@@ -31,9 +31,9 @@ class CarController extends Controller
     public function get_car_data(Request $request)
     {
         if(isset($request->id)){
-            $vehicle = Vehicle::where('company_id',$request->id)->paginate(9);
+            $vehicle = Vehicle::with('car.image_test')->where('company_id',$request->id)->paginate(9);
         }else{
-            $vehicle = Vehicle::paginate(9);
+            $vehicle = Vehicle::with('car.image_test')->paginate(9);
         }
 
         $html = view('front.cars.list',compact('vehicle'))->render();

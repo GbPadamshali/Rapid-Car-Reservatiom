@@ -122,7 +122,7 @@
                             "progressBar" : true
                         }
                 toastr.error("Something went wrong.");
-                window.location.reload();
+                //window.location.reload();
             }
          });
       }
@@ -145,6 +145,7 @@
 
              },
              success:function(data){
+                $(window).scrollTop(500);
                 $('.list_data').html(data.result);
              },
            });

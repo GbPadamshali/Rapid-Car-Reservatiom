@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+Route::get('/', 'DashboardController@index');
 Route::group(['prefix' => 'user'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
     Route::get('/car-listing', 'front\CarController@car_list')->name('user.carlist');

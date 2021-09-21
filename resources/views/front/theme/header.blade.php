@@ -10,20 +10,22 @@
                </div>
                <div class="col-md-6">
                   <div class="header-top-right">
+                     @if(!empty(Auth::user()))
                      <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                          Logout 
                      </a>    
                      <form id="frm-logout" action="{{ url('logout') }}" method="POST" style="display: none;">
                          {{ csrf_field() }}
                      </form>
-<!--                      <a href="#">
+                     @endif
+                     <a href="{{ url('login') }}">
                      <i class="fa fa-key"></i>
                      login
                      </a>
-                     <a href="#">
+                     <a href="{{ url('register') }}">
                      <i class="fa fa-user"></i>
                      register
-                     </a> -->
+                     </a>
                      <!-- <div class="dropdown">
                         <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true">
                         <img src="{{ URL::asset('theme/front/img/en.png') }}" alt="lang" /> English
@@ -75,7 +77,9 @@
                </div>
                <div class="col-lg-3">
                   <div class="header-action">
+                     @if(!empty(Auth::user()))
                      <a href="login.html"> Hello, {{ ucfirst(Auth::user()->first_name)}} {{ucfirst(Auth::user()->last_name)}}</a>
+                     @endif
                   </div>
                </div>
             </div>

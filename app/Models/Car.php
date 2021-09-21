@@ -39,6 +39,11 @@ class Car extends Model
     {
         return $this->hasMany('App\Models\CarImage','car_id','id');
     }
+
+    public function image_test()
+    {
+        return $this->belongsTo('App\Models\CarImage','id','car_id');
+    }
     /**
      * Get the image record associated with the car.
     */
