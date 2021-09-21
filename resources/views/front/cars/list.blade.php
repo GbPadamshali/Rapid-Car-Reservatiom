@@ -13,10 +13,10 @@
                            <label><i class="fa fa-sort-amount-asc"></i>Sort By</label>
                            <select class="chosen-select-no-single change_price">
                               <?php $data = Session::get('price_sort'); ?>
-                              <option>Default</option>
+                              <option value="">Default</option>
                               <option value="asc" @if(isset($data)) @if($data == 'asc') selected="" @endif @endif>Price (Low to High)</option>
                               <option value="desc" @if(isset($data)) @if($data == 'desc') selected="" @endif @endif>Price (High to Low)</option>
-                              <option>Featured</option>
+                              <!-- <option value=""  @if(isset($data)) @if($data == 'asc') selected="" @endif @endif>Featured</option> -->
                            </select>
                         </div>
                      </div>

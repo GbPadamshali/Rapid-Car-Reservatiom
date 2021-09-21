@@ -32,6 +32,8 @@ class CarController extends Controller
     {
         if(isset($request->price_sort)){
             \Session::put('price_sort', $request->price_sort);
+        }else{
+            \Session::put('price_sort', "");
         }
 
         if(isset($request->id)){

@@ -129,7 +129,8 @@
 
       $("body").on("click",".get_car_data",function(){
          var id = $(this).data('id');
-         get_load_data(id)
+         var price_sort = '';
+         get_load_data(id,price_sort)
       });
 
       $('body').on('click', '.pagination a', function(e) {
