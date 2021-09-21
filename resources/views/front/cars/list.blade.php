@@ -7,14 +7,15 @@
                            </ul>
                         </div>
                         <div class="paging_status">
-                           <p>1-10 of 25 results</p>
+                           <p>{{ $vehicle->firstItem() }}-{{ $vehicle->lastItem() }} of {{  $vehicle->total() }} results</p>
                         </div>
                         <div class="propertu-page-shortby">
                            <label><i class="fa fa-sort-amount-asc"></i>Sort By</label>
-                           <select class="chosen-select-no-single">
+                           <select class="chosen-select-no-single change_price">
+                              <?php $data = Session::get('price_sort'); ?>
                               <option>Default</option>
-                              <option>Price (Low to High)</option>
-                              <option>Price (High to Low)</option>
+                              <option value="asc" @if(isset($data)) @if($data == 'asc') selected="" @endif @endif>Price (Low to High)</option>
+                              <option value="desc" @if(isset($data)) @if($data == 'desc') selected="" @endif @endif>Price (High to Low)</option>
                               <option>Featured</option>
                            </select>
                         </div>
@@ -36,7 +37,7 @@
                                     <a href="#">
                                        <h3>{{ ucfirst($car_data->car->name) }} {{ucfirst($car_data->car->model)}}</h3>
                                     </a>
-                                    <h4>$75.00<span>/ Day</span></h4>
+                                    <h4>${{$car_data->cost}}<span>/ Day</span></h4>
                                     <ul>
                                        <li><i class="fa fa-car"></i>Model:{{$car_data->car->year}}</li>
                                        <li><i class="fa fa-cogs"></i>{{ $car_data->car->body }}</li>
@@ -86,6 +87,17 @@
                                             </li>
                                         @endif
                                     @endfor
+                                    @if ( $vehicle->currentPage() < ($vehicle->lastPage() - 4) )
+                                     <li class="page-item">
+                                         <p style="" class="" >...</p>
+                                     </li>
+                                    @endif
+
+                                    <li class="{{($vehicle->currentPage()==$vehicle->lastPage())?'disabled':''}}">
+                                       <a class="" href="{{$vehicle->url($vehicle->lastPage())}}">
+                                           Last
+                                       </a>
+                                    </li>
                                     @if($vehicle->currentPage() != $vehicle->lastPage())
                                          <li class="{{ ($vehicle->currentPage() == $vehicle->lastPage()) ? ' disabled' : '' }}">
                                              <a href="{{ $vehicle->url($vehicle->currentPage()+1) }}" class="" aria-label="Next">
@@ -94,6 +106,7 @@
                                              </a>
                                          </li>
                                      @endif
+
                                 </ul>
                             </div>
                         @endif

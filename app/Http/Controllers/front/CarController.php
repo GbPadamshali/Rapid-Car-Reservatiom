@@ -30,10 +30,19 @@ class CarController extends Controller
 
     public function get_car_data(Request $request)
     {
+        if(isset($request->price_sort)){
+            \Session::put('price_sort', $request->price_sort);
+        }
+
         if(isset($request->id)){
-            $vehicle = Vehicle::with('car.image_test')->where('company_id',$request->id)->paginate(9);
+            $vehicle = Vehicle::with('car.image_test')->where('company_id',$request->id);
         }else{
-            $vehicle = Vehicle::with('car.image_test')->paginate(9);
+            $vehicle = Vehicle::with('car.image_test');
+        }
+        if(isset($request->price_sort)){
+            $vehicle = $vehicle->orderby('cost',$request->price_sort)->paginate(9);
+        }else{
+            $vehicle = $vehicle->paginate(9);
         }
 
         $html = view('front.cars.list',compact('vehicle'))->render();
