@@ -11,8 +11,13 @@ class DashboardController extends Controller
         // $this->middleware('auth');
     }
 
-    public function index()
+
+    public function front_dashboard()
     {
         return view('front.index');
+    }
+    public function index()
+    {
+        return view('front.dashboard.index');
     }
 }
