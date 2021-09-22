@@ -95,7 +95,9 @@
             },
             beforeSend: function () {
 
-                $(".list_data").html("<img src='{{ URL::asset('theme/images/cars/Spinner.gif') }}' alt='offer 1'/>");
+               $(window).scrollTop(500);
+
+               $(".list_data").html("<img src='{{ URL::asset('theme/images/cars/Spinner.gif') }}' alt='offer 1'/>");
                 
             },
             success: function (data) {
@@ -164,8 +166,9 @@
       });
 
       $("body").on("change",".change_price",function(){
+         var id =  $(".test ul").find('li.active').data('id');
          var price_sort = $('.change_price :selected').val();
-         get_load_data(id=null,price_sort)
+         get_load_data(id,price_sort)
       });
     </script>
     @endsection
