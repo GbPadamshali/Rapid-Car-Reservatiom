@@ -37,7 +37,7 @@ class Vehicle extends Model
 
     public function company()
     {
-        return $this->belongsTo('App\Models\company','company_id','id');
+        return $this->belongsTo('App\Models\Company','company_id','id');
     }
 
     public function car()
