@@ -17,7 +17,7 @@
                      <form id="frm-logout" action="{{ url('logout') }}" method="POST" style="display: none;">
                          {{ csrf_field() }}
                      </form>
-                     @endif
+                     @else
                      <a href="{{ url('login') }}">
                      <i class="fa fa-key"></i>
                      login
@@ -26,6 +26,7 @@
                      <i class="fa fa-user"></i>
                      register
                      </a>
+                     @endif
                      <!-- <div class="dropdown">
                         <button class="btn-dropdown dropdown-toggle" type="button" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true">
                         <img src="{{ URL::asset('theme/front/img/en.png') }}" alt="lang" /> English
@@ -42,6 +43,7 @@
          </div>
       </section>      <!-- Header Top Area End -->
       <!-- Main Header Area Start -->
+      @if(!Auth::user())
       <header class="gauto-main-header-area">
          <div class="container">
             <div class="row">
@@ -254,3 +256,4 @@
             </div>
          </div>
       </section>
+      @endif

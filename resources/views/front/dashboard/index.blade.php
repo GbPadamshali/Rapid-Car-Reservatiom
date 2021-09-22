@@ -8,17 +8,6 @@
             color: greem;
         }
     </style>
-    <div class="alert alert-danger" style="margin-top: 10px;">
-        @if(Auth::user()->verified != 1)
-         <div class="container">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="material-icons"></i></span>
-            </button>
-            <i class="fa fa-warning"></i>
-            <b>Error Alert:</b> Your email is not verified please verify your email first.
-        </div>
-        @endif
-    </div>
       <section class="account-page-tab">
          <div class="container">
             <div class="row account-page-header">
@@ -61,6 +50,17 @@
                   </nav>
                </div>
             </div>
+                <div class="alert alert-danger" style="margin-top: 10px;">
+        @if(Auth::user()->verified != 1)
+         <div class="container">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"><i class="material-icons"></i></span>
+            </button>
+            <i class="fa fa-warning"></i>
+            <b>Error Alert:</b> Your email is not verified please verify your email first.
+        </div>
+        @endif
+    </div>
             <div class="row">
                <div class="homebtn">
                   <a href="#" class="gauto-btn"><i class="fa fa-angle-left"></i>Back to Home</a>
