@@ -20,4 +20,6 @@ class DashboardController extends Controller
     {
         return view('front.dashboard.index');
     }
+
+    
 }

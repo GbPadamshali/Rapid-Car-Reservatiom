@@ -36,10 +36,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+/*    public function __construct()
     {
         $this->middleware('guest');
-    }
+    }*/
 
     /**
      * Get a validator for an incoming registration request.
@@ -81,22 +81,4 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function verifyUser($token)
-    {
-      $verifyUser = User::where('token', $token)->first();
-      if(isset($verifyUser) ){
-        $user = $verifyUser;
-        if(!$user->verified) {
-          $verifyUser->token = '';
-          $verifyUser->verified = 1;
-          $verifyUser->save();
-          $status = "Your e-mail is verified. You can now login.";
-        } else {
-          $status = "Your e-mail is already verified. You can now login.";
-        }
-      } else {
-        return redirect('/login')->with('warning', "Sorry your email cannot be identified.");
-      }
-      return redirect('/login')->with('status', $status);
-    }
 }

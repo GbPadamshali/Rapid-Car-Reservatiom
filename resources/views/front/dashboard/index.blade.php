@@ -5,7 +5,7 @@
             color: red;
         }
         .check{
-            color: greem;
+            color: green;
         }
     </style>
       <section class="account-page-tab">
@@ -50,8 +50,9 @@
                   </nav>
                </div>
             </div>
+              @if(Auth::user()->verified != 1)
                 <div class="alert alert-danger" style="margin-top: 10px;">
-        @if(Auth::user()->verified != 1)
+      
          <div class="container">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="material-icons"></i></span>
@@ -59,8 +60,9 @@
             <i class="fa fa-warning"></i>
             <b>Error Alert:</b> Your email is not verified please verify your email first.
         </div>
-        @endif
+       
     </div>
+     @endif
             <div class="row">
                <div class="homebtn">
                   <a href="#" class="gauto-btn"><i class="fa fa-angle-left"></i>Back to Home</a>
@@ -103,8 +105,10 @@
                            <div class="tabcontent-profile-table-detail">
                               <p>{{ ucfirst(Auth::user()->first_name)}} {{ucfirst(Auth::user()->last_name)}}</p>
                               <p>{{ $new_date_format }}</p>
-                              <p>{{ Auth::user()->email }} @if(Auth::user()->verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"></i>@endif</p>
-                              <p>{{  Auth::user()->phone }} @if(Auth::user()->phone_verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"></i> @endif</p>
+
+
+                              <p> @if(Auth::user()->verified != 1) <span style="cursor: pointer;" class="badge badge-primary mail_send">Resend mail</span> @endif {{ Auth::user()->email }} @if(Auth::user()->verified)<i class="fa fa-check check"> (Verified)</i>@else<i class="fa fa-close cross"></i>@endif</p>
+                              <p><span style="cursor: pointer;" class="badge badge-primary otp_send">Resend otp</span> {{  Auth::user()->phone }} @if(Auth::user()->phone_verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"> (Not verified)</i> @endif</p>
                               <p>Verify ID</p>
                            </div>
                         </div>
@@ -367,3 +371,32 @@
          </div>
       </section>
 @endsection
+@section('js')
+ <link rel="stylesheet" type="text/css" 
+     href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"> 
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">
+     
+       $('body').on('click', '.mail_send', function(e) {
+          var token =  "{{ sha1(time()) }}"
+         e.preventDefault();
+       
+         $.ajax({
+           url : "{{ route('user.resend_mail') }}",
+           type: "get",
+           headers: {
+             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+           beforeSend: function() {
+
+           },
+           success:function(data){
+            console.log(data)
+             if (data.status == 200) {
+                     toastr.success("success.");
+                }
+           },
+        });
+      });
+</script>
+  @endsection

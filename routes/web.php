@@ -14,7 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+
+
 Route::get('/', 'DashboardController@front_dashboard');
+
+Route::get('resend_mail', 'PublicAccessController@resend_mail')->name('user.resend_mail');
+
 Route::group(['prefix' => 'user'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
     
@@ -22,7 +27,7 @@ Route::group(['prefix' => 'user'], function () {
 });
 
 Route::get('/car-listing', 'front\CarController@car_list')->name('user.carlist');
-Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
+Route::get('user/verify/{token}', 'PublicAccessController@verifyUser')->name('user.verify');
 Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'admin\AdminController@login');
