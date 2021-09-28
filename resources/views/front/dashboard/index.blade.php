@@ -108,7 +108,7 @@
 
 
                               <p> @if(Auth::user()->verified != 1) <span style="cursor: pointer;" class="badge badge-primary mail_send">Resend mail</span> @endif {{ Auth::user()->email }} @if(Auth::user()->verified)<i class="fa fa-check check"> (Verified)</i>@else<i class="fa fa-close cross"></i>@endif</p>
-                              <p><span style="cursor: pointer;" class="badge badge-primary otp_send">Resend otp</span> {{  Auth::user()->phone }} @if(Auth::user()->phone_verified)<i class="fa fa-check check"></i>@else<i class="fa fa-close cross"> (Not verified)</i> @endif</p>
+                              <p> @if(Auth::user()->phone_verified != 1)<span style="cursor: pointer;" class="badge badge-primary otp_send" data-toggle="modal" data-target="#myModal">Resend otp</span> @endif {{  Auth::user()->phone }} @if(Auth::user()->phone_verified)<i class="fa fa-check check">  (Verified)</i>@else<i class="fa fa-close cross"> (Not verified)</i> @endif</p>
                               <p>Verify ID</p>
                            </div>
                         </div>
@@ -370,6 +370,31 @@
             </div>
          </div>
       </section>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-sm">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      
+      <div class="modal-body">
+        <p>OTP verification.</p>
+      </div>
+       <form role="form" action="{{ route('user.verify_otp') }}"  id="store_user" name="store_user" class="formsubmit" method="post" enctype="multipart/form-data">
+         <div class="form-group col-md-12">
+         <input type="text" class="form-control" name="otp" id="model" placeholder="Enter OTP" value="">
+      </div>
+       
+      <div class="modal-footer">
+         <button class="btn btn-primary resend_otp">Resend OTP<span class="spinner_test"></span></button>
+        <button type="submit" class="btn btn-default">Submit <span class="spinner"></span></button>
+      </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>
 @endsection
 @section('js')
  <link rel="stylesheet" type="text/css" 
@@ -398,5 +423,90 @@
            },
         });
       });
+
+      $('body').on('click', '.otp_send', function(e) {
+         e.preventDefault();
+       
+         $.ajax({
+           url : "{{ route('user.send_opt') }}",
+           type: "post",
+           headers: {
+             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+           beforeSend: function() {
+
+           },
+           success:function(data){
+               console.log(data)
+               if (data.status == 200) {
+                     toastr.success(data.msg);
+               }
+               if (data.status == 400) {
+                     toastr.error(data.msg);
+               }
+           },
+        });
+      });
+
+      $('body').on('click', '.resend_otp', function(e) {
+         e.preventDefault();
+       
+         $.ajax({
+           url : "{{ route('user.send_opt') }}",
+           type: "post",
+           headers: {
+             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+           },
+           beforeSend: function() {
+               $('.spinner_test').html('<i class="fa fa-spinner fa-spin"></i>');
+               $('.submitbutton').prop("disabled", true);
+
+           },
+           success:function(data){
+               console.log(data)
+               if (data.status == 200) {
+                  $('.spinner_test').html('');
+                     toastr.success(data.msg);
+               }
+               if (data.status == 400) {
+                  $('.spinner_test').html('');
+                  toastr.error(data.msg);
+               }
+           },
+        });
+      });
+
+
+
+      $('body').on('submit', '.formsubmit', function (e) {
+          e.preventDefault();
+          $.ajax({
+              url: $(this).attr('action'),
+              data: new FormData(this),
+              type: 'POST',
+              contentType: false,
+              cache: false,
+              processData: false,
+              beforeSend: function () {
+                  $('.spinner').html('<i class="fa fa-spinner fa-spin"></i>');
+                  $('.submitbutton').prop("disabled", true);
+
+              },
+              success: function (data) {
+                  $('.submitbutton').prop("disabled", false);
+                  if (data.status == 200) {
+                     $('.spinner').html('');
+                     $('#myModal').modal('hide');
+                     toastr.success(data.msg);
+                  }
+                  if (data.status == 400) {
+                     $('.spinner').html('');
+                     toastr.error(data.msg);
+                  }
+              },
+
+          });
+      });
+
 </script>
   @endsection

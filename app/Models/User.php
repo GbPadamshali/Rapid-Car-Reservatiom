@@ -28,6 +28,7 @@ class User extends Model implements AuthenticatableContract
         'status',
         'token',
         'verified',
+        'otp'
     ];
 
     protected $hidden = [

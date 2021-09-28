@@ -128,7 +128,7 @@
                         
                         <div class="remember-row">
                            <p class="lost-pass">
-                              <a href="{{ route('forgot') }}">forgot password?</a>
+                              <a href="{{ route('password.request') }}">forgot password?</a>
                            </p>
                            <p class="checkbox remember">
                               <input class="checkbox-spin" type="checkbox" id="Freelance">

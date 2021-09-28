@@ -19,6 +19,8 @@ Auth::routes();
 Route::get('/', 'DashboardController@front_dashboard');
 
 Route::get('resend_mail', 'PublicAccessController@resend_mail')->name('user.resend_mail');
+Route::post('send_opt', 'PublicAccessController@send_opt')->name('user.send_opt');
+Route::post('verify_otp', 'PublicAccessController@verify_otp')->name('user.verify_otp');
 
 Route::group(['prefix' => 'user'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('user.dashboard');
